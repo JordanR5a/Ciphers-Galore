@@ -8,7 +8,6 @@ namespace Ciphers_Galore.Model
 {
     public class Skip : Cipher
     {
-        //TODO List answers by method to show work
         public override List<string> Decrypt(string message, bool showSteps)
         {
             var words = new string(message.Where(c => Char.IsLetter(c) || Char.IsWhiteSpace(c)).ToArray()).Split(" ").Where(word => !word.Equals("")).ToArray();
@@ -16,25 +15,28 @@ namespace Ciphers_Galore.Model
             var possibleAnswers = new List<string>();
 
             int max = words.OrderBy(w => w.Length).First().Length;
-            Parallel.For(0, max, i => 
+            for (int i = 0; i < max; i++)
             {
-                var answer = LetterPosition(words, i);
+                if (showSteps) Console.Write("Checking letter position " + (i + 1) + "...");
+                var answer = LetterPosition(words, i, showSteps);
                 if (answer != null) possibleAnswers.Add(answer);
-            });
-            if (showSteps) Console.WriteLine("Checking by letter position...");
+            }
 
-            possibleAnswers.Add(LastLetter(words));
-            if (showSteps) Console.WriteLine("Checking by last letter...");
+            if (showSteps) Console.Write("Checking by last letter...");
+            possibleAnswers.Add(LastLetter(words, showSteps));
 
             int variations = message.Length / 4;
-            Parallel.For(2, variations, i =>
+            for (int i = 2; i < variations; i++)
             {
-                for (int k = 0; k < i; k++) possibleAnswers.Add(EveryNthLetter(message, i, k));
-            });
-            if (showSteps) Console.WriteLine("Checking every nth position...");
+                for (int k = 0; k < i; k++)
+                {
+                    if (showSteps) Console.Write("Checking position " + i + ", offset of " + k + "...");
+                    possibleAnswers.Add(EveryNthLetter(message, i, k, showSteps));
+                }
+            }
 
-            possibleAnswers.Add(Staircase(words));
-            if (showSteps) Console.WriteLine("Checking by staircase...");
+            if (showSteps) Console.Write("Checking by staircase...");
+            possibleAnswers.Add(Staircase(words, showSteps));
 
             var realWordAnswers = new List<string>();
             foreach (var op in possibleAnswers) realWordAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
@@ -42,7 +44,7 @@ namespace Ciphers_Galore.Model
             return realWordAnswers;
         }
 
-        private string LetterPosition(string[] words, int index)
+        private string LetterPosition(string[] words, int index, bool showSteps)
         {
             if (words.OrderBy(w => w.Length).First().Length < index) return null;
 
@@ -51,10 +53,11 @@ namespace Ciphers_Galore.Model
             {
                 answer.Append(words[word][index]);
             }
+            if (showSteps) Console.WriteLine(answer);
             return answer.ToString();
         }
 
-        private string LastLetter(string[] words)
+        private string LastLetter(string[] words, bool showSteps)
         {
             var answer = new StringBuilder();
             for (int index = 0; index < words.Length; index++)
@@ -62,10 +65,11 @@ namespace Ciphers_Galore.Model
                 var word = words[index];
                 answer.Append(word[word.Length - 1]);
             }
+            if (showSteps) Console.WriteLine(answer);
             return answer.ToString();
         }
 
-        private string Staircase(string[] words)
+        private string Staircase(string[] words, bool showSteps)
         {
             var answer = new StringBuilder();
 
@@ -79,11 +83,11 @@ namespace Ciphers_Galore.Model
 
                 step++;
             }
-
+            if (showSteps) Console.WriteLine(answer);
             return answer.ToString();
         }
 
-        private string EveryNthLetter(string message, int n, int offset)
+        private string EveryNthLetter(string message, int n, int offset, bool showSteps)
         {
             var answer = new StringBuilder();
 
@@ -93,7 +97,7 @@ namespace Ciphers_Galore.Model
                 if (let % n == 0) answer.Append(c);
                 let++;
             }
-
+            if (showSteps) Console.WriteLine(answer);
             return answer.ToString();
         }
     }
