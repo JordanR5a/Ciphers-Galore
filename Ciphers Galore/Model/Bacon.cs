@@ -35,9 +35,8 @@ namespace Ciphers_Galore.Model
             { "10110", new string[] { "Y" } },
             { "10111", new string[] { "Z" } },
         };
-        private static Dictionary<string[], string> characterToBinary = binaryToCharacter.ToDictionary((i) => i.Value, (i) => i.Key);
 
-        public List<string> Decrypt(string message, bool showSteps)
+        public override List<string> Decrypt(string message, bool showSteps)
         {
             message = new string(message.Where(c => Char.IsLetter(c)).ToArray());
 
@@ -101,10 +100,10 @@ namespace Ciphers_Galore.Model
                 }
             }
 
-            var possibleAnswers = new List<string>();
-            foreach (var op in optionalConversions) possibleAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
+            var realWordAnswers = new List<string>();
+            foreach (var op in optionalConversions) realWordAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
 
-            return possibleAnswers;
+            return realWordAnswers;
             
         }
 
@@ -118,6 +117,30 @@ namespace Ciphers_Galore.Model
 
             for (var i = 0; i < s.Length; i += partLength)
                 yield return s.Substring(i, Math.Min(partLength, s.Length - i));
+        }
+
+        public override string Encrypt(string message, bool showSteps)
+        {
+            message = new string(message.Where(c => Char.IsLetter(c)).ToArray());
+
+            var binary = new StringBuilder();
+
+            foreach (var c in message)
+                foreach (var set in binaryToCharacter)
+                    if (set.Value.ToList().Contains(c.ToString().ToUpper()))
+                        binary.Append(set.Key);
+
+            var temp = binary.Length;
+            var result = new StringBuilder();
+
+            foreach (var c in binary.ToString())
+            {
+                if (int.Parse(c.ToString()) == 0) result.Append(Library.Letter.ToString().ToLower());
+                else if (int.Parse(c.ToString()) == 1) result.Append(Library.Letter.ToString().ToUpper());
+                if (new Random().Next(2) == 1) result.Append(" ");
+            }
+
+            return result.ToString();
         }
     }
 }

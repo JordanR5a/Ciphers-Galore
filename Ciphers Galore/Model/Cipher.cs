@@ -16,6 +16,10 @@ namespace Ciphers_Galore.Model
             Library = new Library();
         }
 
+        public virtual List<string> Decrypt(string message, bool showSteps) { return null; }
+
+        public virtual string Encrypt(string message, bool showSteps) { return null; }
+
         protected static List<string> FindPossibleAnswers(string rawText)
         {
             return IFindPossibleAnswers("", rawText);
