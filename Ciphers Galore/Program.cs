@@ -9,15 +9,15 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Reverse();
+            var tool = new Skip();
             var results = tool.Decrypt(Console.ReadLine(), true);
 
             Console.WriteLine();
             Console.WriteLine("Possible Results:");
-            //foreach (var result in results) Console.WriteLine(result);
-            foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
+            foreach (var result in results) Console.WriteLine(result);
+            //foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
 
-            /*var tool = new Reverse();
+            /*var tool = new Skip();
             Console.WriteLine(tool.Encrypt(Console.ReadLine(), true));*/
         }
 

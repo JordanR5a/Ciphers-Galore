@@ -100,5 +100,25 @@ namespace Ciphers_Galore.Model
             if (showSteps) Console.WriteLine(answer);
             return answer.ToString();
         }
+
+        public override string Encrypt(string message, bool showSteps)
+        {
+            message = new string(message.Where(c => Char.IsLetter(c)).ToArray());
+
+            var result = new StringBuilder();
+            foreach (var c in message)
+            {
+                string word;
+                do
+                {
+                    word = Library.GetRealWord(new Random().Next(1, 8), new Dictionary<char, int>() { { c, 0 } });
+                }
+                while (word == null);
+
+                result.Append(word + " ");
+            }
+
+            return result.Replace(' ', '.', result.Length - 2, 1).ToString();
+        }
     }
 }

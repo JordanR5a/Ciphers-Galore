@@ -50,14 +50,28 @@ namespace Ciphers_Galore.Model
 
         public string GetRealWord(int length)
         {
-            string realWord;
-            do
-            {
-                realWord = RealWord;
-            }
-            while (realWord.Length != length);
+            return GetRealWord(length, new Dictionary<char, int>());
+        }
 
-            return realWord;
+        public string GetRealWord(int length, Dictionary<char, int> requiredLetterPositions)
+        {
+            if (requiredLetterPositions.Any(set => set.Value >= length)) return null;
+
+            int attempts = 0;
+            while (true)
+            {
+                string word = RealWord;
+                if (word.Length == length)
+                {
+                    bool accept = true;
+                    foreach (var letPos in requiredLetterPositions)
+                        if (!word.Substring(letPos.Value, 1).Equals(letPos.Key.ToString().ToLower()))
+                            accept = false;
+
+                    if (accept) return word;
+                }
+                if (attempts++ > 250) return null;
+            }
         }
     }
 }
