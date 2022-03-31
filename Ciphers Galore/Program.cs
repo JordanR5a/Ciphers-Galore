@@ -9,7 +9,7 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Skip();
+            var tool = new Reverse();
             var results = tool.Decrypt(Console.ReadLine(), true);
 
             Console.WriteLine();
@@ -17,8 +17,8 @@ namespace Ciphers_Galore
             //foreach (var result in results) Console.WriteLine(result);
             foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
 
-            /*var tool = new Bacon();
-            Console.WriteLine(tool.Encrypt("Why does this world love me so", true));*/
+            /*var tool = new Reverse();
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), true));*/
         }
 
         private static List<string> FindMostLikely(List<string> results, int amount)
