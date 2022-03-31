@@ -22,8 +22,11 @@ namespace Ciphers_Galore.Model
                 if (answer != null) possibleAnswers.Add(answer);
             }
 
-            if (showSteps) Console.Write("Checking by last letter...");
-            possibleAnswers.Add(LastLetter(words, showSteps));
+            for (int i = 0; i < max; i++)
+            {
+                if (showSteps) Console.Write("Checking by last letter, offset of " + i + "...");
+                possibleAnswers.Add(LastLetter(words, showSteps, i));
+            }
 
             int variations = message.Length / 4;
             for (int i = 2; i < variations; i++)
@@ -57,13 +60,13 @@ namespace Ciphers_Galore.Model
             return answer.ToString();
         }
 
-        private string LastLetter(string[] words, bool showSteps)
+        private string LastLetter(string[] words, bool showSteps, int offset)
         {
             var answer = new StringBuilder();
             for (int index = 0; index < words.Length; index++)
             {
                 var word = words[index];
-                answer.Append(word[word.Length - 1]);
+                answer.Append(word[(word.Length - 1) - offset]);
             }
             if (showSteps) Console.WriteLine(answer);
             return answer.ToString();

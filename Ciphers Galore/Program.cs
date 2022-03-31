@@ -9,7 +9,7 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Skip();
+            var tool = new Bacon();
             var results = tool.Decrypt(Console.ReadLine(), true);
 
             Console.WriteLine();
