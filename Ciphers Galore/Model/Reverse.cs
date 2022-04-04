@@ -10,6 +10,8 @@ namespace Ciphers_Galore.Model
 
         public override List<string> Decrypt(string message, bool showSteps)
         {
+            message = new string(message.ToCharArray().Reverse().Where(c => Char.IsLetter(c)).ToArray());
+            if (showSteps) Console.WriteLine("Plain Text: " + message);
             return FindPossibleAnswers(new string(message.ToCharArray().Reverse().Where(c => Char.IsLetter(c)).ToArray()).ToLower());
         }
 

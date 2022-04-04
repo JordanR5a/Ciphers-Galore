@@ -25,6 +25,7 @@ namespace Ciphers_Galore.Model
             return IFindPossibleAnswers("", rawText);
         }
 
+        //TODO: Instead of branching, only go with the largest match to optimize runtime
         private static List<string> IFindPossibleAnswers(string resultText, string rawText)
         {
             //Console.WriteLine(resultText);

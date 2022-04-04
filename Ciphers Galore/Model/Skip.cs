@@ -41,6 +41,9 @@ namespace Ciphers_Galore.Model
             if (showSteps) Console.Write("Checking by staircase...");
             possibleAnswers.Add(Staircase(words, showSteps));
 
+            /*if (showSteps) Console.Write("Checking by reverse staircase...");
+            possibleAnswers.Add(ReverseStaircase(words, showSteps));*/
+
             var realWordAnswers = new List<string>();
             foreach (var op in possibleAnswers) realWordAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
 
@@ -83,6 +86,26 @@ namespace Ciphers_Galore.Model
                 if (word.Length <= step) step = 0;
 
                 answer.Append(word[step]);
+
+                step++;
+            }
+            if (showSteps) Console.WriteLine(answer);
+            return answer.ToString();
+        }
+
+        //NOT IMPLEMENTED
+        private string ReverseStaircase(string[] words, bool showSteps)
+        {
+            var answer = new StringBuilder();
+
+            int step = 0;
+            for (int i = 0; i < words.Length; i++)
+            {
+                var word = words[i];
+                
+                if (word.Length <= step) step = 0;
+
+                answer.Append(word[(word.Length - 1) - step]);
 
                 step++;
             }
