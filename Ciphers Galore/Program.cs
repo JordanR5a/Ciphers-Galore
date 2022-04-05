@@ -9,8 +9,8 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Bacon();
-            var results = tool.Decrypt(Console.ReadLine(), true);
+            var tool = new Transposition();
+            var results = tool.Decrypt(Console.ReadLine(), "potato", true);
 
             Console.WriteLine();
             Console.WriteLine("Possible Results:");
