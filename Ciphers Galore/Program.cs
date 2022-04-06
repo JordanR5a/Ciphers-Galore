@@ -18,7 +18,7 @@ namespace Ciphers_Galore
             foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);*/
 
             var tool = new Transposition();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), "liar", true));
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), 6, true));
         }
 
         private static List<string> FindMostLikely(List<string> results, int amount)

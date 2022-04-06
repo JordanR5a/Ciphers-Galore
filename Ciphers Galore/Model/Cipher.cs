@@ -1,8 +1,5 @@
-﻿using Ciphers_Galore.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Ciphers_Galore.Model
@@ -41,6 +38,19 @@ namespace Ciphers_Galore.Model
             });
             return answers;
         }
-        
+
+        //https://stackoverflow.com/questions/24094093/how-to-print-2d-array-to-console-in-c-sharp
+        public static void Print2DArray<T>(T[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+
     }
 }

@@ -47,7 +47,11 @@ namespace Ciphers_Galore.Model
                     if (grid[h, l] != '%') answer.Append(grid[h, l]);
                 }
             }
-            if (showSteps) Console.WriteLine("Keyword Transposition (Key = " + keyword + "): " + answer);
+            if (showSteps)
+            {
+                Console.WriteLine("Keyword Transposition (Key = " + keyword + "): " + answer);
+                Print2DArray(grid);
+            }
 
             return FindPossibleAnswers(answer.ToString());
         }
@@ -83,7 +87,11 @@ namespace Ciphers_Galore.Model
                         if (grid[h, l] != '%') answer.Append(grid[h, l]);
                     }
                 }
-                if (showSteps) Console.WriteLine("Key Transposition (Key = " + key + "): " + answer);
+                if (showSteps)
+                {
+                    Console.WriteLine("Key Transposition (Key = " + key + "): " + answer);
+                    Print2DArray(grid);
+                }
                 possibleAnswers.Add(answer.ToString());
             }
 
@@ -93,7 +101,6 @@ namespace Ciphers_Galore.Model
             return realWordAnswers;
         }
 
-        //TODO
         public string Encrypt(string message, string keyword, bool showSteps)
         {
             message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
@@ -133,6 +140,12 @@ namespace Ciphers_Galore.Model
                 }
             }
 
+            if (showSteps)
+            {
+                Console.WriteLine("Key Transposition (Key = " + keyword + "):");
+                Print2DArray(grid);
+            }
+
             return answer.ToString();
         }
 
@@ -163,6 +176,12 @@ namespace Ciphers_Galore.Model
                 {
                     if (grid[h, l] != '%') answer.Append(Char.ToUpper(grid[h, l]));
                 }
+            }
+
+            if (showSteps)
+            {
+                Console.WriteLine("Key Transposition (Key = " + key + "):");
+                Print2DArray(grid);
             }
 
             return answer.ToString();
