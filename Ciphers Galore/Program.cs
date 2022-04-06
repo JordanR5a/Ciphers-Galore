@@ -9,16 +9,16 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Transposition();
+            /*var tool = new Transposition();
             var results = tool.Decrypt(Console.ReadLine(), "potato", true);
 
             Console.WriteLine();
             Console.WriteLine("Possible Results:");
             //foreach (var result in results) Console.WriteLine(result);
-            foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
+            foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);*/
 
-            /*var tool = new Skip();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), true));*/
+            var tool = new Transposition();
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), "liar", true));
         }
 
         private static List<string> FindMostLikely(List<string> results, int amount)
