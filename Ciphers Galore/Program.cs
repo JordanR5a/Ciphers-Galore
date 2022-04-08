@@ -24,7 +24,7 @@ namespace Ciphers_Galore
 
         private static List<string> FindMostLikely(List<string> results, int amount)
         {
-            return results.OrderByDescending(r => r.Where(c => Char.IsLetter(c)).Count()).ThenByDescending(r => r, new AnswerComparer()).Take(amount).ToList();
+            return results.OrderByDescending(r => r, new AnswerComparer()).Take(amount).ToList();
         }
     }
 }

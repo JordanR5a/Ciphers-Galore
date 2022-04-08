@@ -12,8 +12,8 @@ namespace Ciphers_Galore.Model
         {
             if (x == null || y == null) return 0;
 
-            var xWords = x.Split(" ").ToArray();
-            var yWords = y.Split(" ").ToArray();
+            var xWords = x.Split(" ").OrderByDescending(w => w.Length).ToArray();
+            var yWords = y.Split(" ").OrderByDescending(w => w.Length).ToArray();
 
             int max = xWords.Length > yWords.Length ? yWords.Length : xWords.Length;
             for (int i = 0; i < max; i++)
