@@ -9,8 +9,8 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Transposition();
-            var results = tool.Decrypt(Console.ReadLine(), "canon", true);
+            var tool = new Caesar();
+            var results = tool.Decrypt(Console.ReadLine(), true);
 
             Console.WriteLine();
             Console.WriteLine("Possible Results:");

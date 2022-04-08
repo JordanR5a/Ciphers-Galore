@@ -8,7 +8,6 @@ namespace Ciphers_Galore.Model
 {
     public class Transposition : Cipher
     {
-        private static readonly char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v' , 'w', 'x', 'y', 'z' };
 
         public List<string> Decrypt(string message, string keyword, bool showSteps)
         {
@@ -24,9 +23,9 @@ namespace Ciphers_Galore.Model
             for (int b = 0; b < buffer; b++) grid[size - 1, (keyword.Length - 1) - b] = '%';
 
             var stack = new Stack<char>(message.ToCharArray().Reverse().ToList());
-            for (int let = 0; let < alphabet.Length; let++)
+            for (int let = 0; let < Alphabet.Length; let++)
             {
-                int position = keywordTemplate.ToList().IndexOf(alphabet[let]);
+                int position = keywordTemplate.ToList().IndexOf(Alphabet[let]);
                 if (position != -1)
                 {
                     keywordTemplate[position] = '%';
@@ -124,9 +123,9 @@ namespace Ciphers_Galore.Model
             }
 
             var answer = new StringBuilder();
-            for (int let = 0; let < alphabet.Length; let++)
+            for (int let = 0; let < Alphabet.Length; let++)
             {
-                int position = keywordTemplate.ToList().IndexOf(alphabet[let]);
+                int position = keywordTemplate.ToList().IndexOf(Alphabet[let]);
                 if (position != -1)
                 {
                     keywordTemplate[position] = '%';
