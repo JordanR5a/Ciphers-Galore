@@ -10,7 +10,7 @@ namespace Ciphers_Galore
         static void Main(string[] args)
         {
             var tool = new Transposition();
-            var results = tool.Decrypt(Console.ReadLine(), true);
+            var results = tool.Decrypt(Console.ReadLine(), "canon", true);
 
             Console.WriteLine();
             Console.WriteLine("Possible Results:");
@@ -18,7 +18,8 @@ namespace Ciphers_Galore
             foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
 
             /*var tool = new Transposition();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), "sparrow", true));*/
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), "supercalifragilisticexpialidocious", true));*/
+
         }
 
         private static List<string> FindMostLikely(List<string> results, int amount)

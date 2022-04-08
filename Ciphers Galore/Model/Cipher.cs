@@ -22,7 +22,7 @@ namespace Ciphers_Galore.Model
             return IFindPossibleAnswers("", rawText);
         }
 
-        //TODO: Instead of branching, only go with the largest match to optimize runtime
+        //TODO: Instead of only accepting real world answers, find results with the MOST real words in it with the least amount of remaining letters
         private static List<string> IFindPossibleAnswers(string resultText, string rawText)
         {
             //Console.WriteLine(resultText);

@@ -61,7 +61,7 @@ namespace Ciphers_Galore.Model
             message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
 
             var possibleAnswers = new List<string>();
-            for (int key = 1; key < Math.Sqrt(message.Length) + 5; key++)
+            for (int key = 2; key < Math.Sqrt(message.Length) + 5; key++)
             {
                 int size = (int)Math.Ceiling((double)message.Length / key);
 
