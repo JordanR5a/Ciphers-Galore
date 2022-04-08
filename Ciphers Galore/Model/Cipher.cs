@@ -18,13 +18,13 @@ namespace Ciphers_Galore.Model
 
         public virtual string Encrypt(string message, bool showSteps) { return null; }
 
-        protected static List<string> FindPossibleAnswers(string rawText)
+        protected static List<string> FindPossibleRealWordAnswers(string rawText)
         {
-            return IFindPossibleAnswers("", rawText);
+            return IFindPossibleRealWordAnswers("", rawText);
         }
 
         //TODO: Instead of only accepting real world answers, find results with the MOST real words in it with the least amount of remaining letters
-        private static List<string> IFindPossibleAnswers(string resultText, string rawText)
+        private static List<string> IFindPossibleRealWordAnswers(string resultText, string rawText)
         {
             //Console.WriteLine(resultText);
             List<string> answers = new List<string>();
@@ -35,7 +35,7 @@ namespace Ciphers_Galore.Model
             Parallel.For(1, max + 1, i =>
             {
                 if (Library.IsRealWord(rawText.Substring(0, i)))
-                    answers.AddRange(IFindPossibleAnswers(resultText + rawText.Substring(0, i) + " ", rawText.Substring(i)));
+                    answers.AddRange(IFindPossibleRealWordAnswers(resultText + rawText.Substring(0, i) + " ", rawText.Substring(i)));
             });
             return answers;
         }

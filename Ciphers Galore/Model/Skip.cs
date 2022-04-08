@@ -45,7 +45,7 @@ namespace Ciphers_Galore.Model
             possibleAnswers.Add(ReverseStaircase(words, showSteps));*/
 
             var realWordAnswers = new List<string>();
-            foreach (var op in possibleAnswers) realWordAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
+            foreach (var op in possibleAnswers) realWordAnswers.AddRange(FindPossibleRealWordAnswers(op.ToLower()));
 
             return realWordAnswers;
         }

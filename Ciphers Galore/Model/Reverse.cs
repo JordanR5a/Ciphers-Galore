@@ -12,7 +12,7 @@ namespace Ciphers_Galore.Model
         {
             message = new string(message.ToCharArray().Reverse().Where(c => Char.IsLetter(c)).ToArray());
             if (showSteps) Console.WriteLine("Plain Text: " + message);
-            return FindPossibleAnswers(new string(message.ToCharArray().Reverse().Where(c => Char.IsLetter(c)).ToArray()).ToLower());
+            return FindPossibleRealWordAnswers(new string(message.ToCharArray().Reverse().Where(c => Char.IsLetter(c)).ToArray()).ToLower());
         }
 
         public override string Encrypt(string message, bool showSteps)

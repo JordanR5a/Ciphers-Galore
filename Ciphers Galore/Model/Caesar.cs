@@ -28,14 +28,25 @@ namespace Ciphers_Galore.Model
             }
 
             var realWordAnswers = new List<string>();
-            foreach (var op in answers) realWordAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
+            foreach (var op in answers) realWordAnswers.AddRange(FindPossibleRealWordAnswers(op.ToLower()));
 
             return realWordAnswers;
         }
 
-        public override string Encrypt(string message, bool showSteps)
+        public string Encrypt(string message, int key, bool showSteps)
         {
-            return base.Encrypt(message, showSteps);
+            message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
+
+            var answer = new StringBuilder();
+            foreach (var let in message)
+            {
+                int index = Alphabet.ToList().IndexOf(let) + key;
+                while (index >= Alphabet.Length) index -= Alphabet.Length;
+
+                answer.Append(Alphabet[index]);
+            }
+
+            return answer.ToString().ToUpper();
         }
     }
 }

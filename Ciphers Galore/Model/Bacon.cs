@@ -101,7 +101,7 @@ namespace Ciphers_Galore.Model
             }
 
             var realWordAnswers = new List<string>();
-            foreach (var op in optionalConversions) realWordAnswers.AddRange(FindPossibleAnswers(op.ToLower()));
+            foreach (var op in optionalConversions) realWordAnswers.AddRange(FindPossibleRealWordAnswers(op.ToLower()));
 
             return realWordAnswers;
             

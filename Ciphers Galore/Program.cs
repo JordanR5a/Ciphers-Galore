@@ -17,8 +17,8 @@ namespace Ciphers_Galore
             //foreach (var result in results) Console.WriteLine(result);
             foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
 
-            /*var tool = new Transposition();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), "supercalifragilisticexpialidocious", true));*/
+            /*var tool = new Caesar();
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), 4, true));*/
 
         }
 
