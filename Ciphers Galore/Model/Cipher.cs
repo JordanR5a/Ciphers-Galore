@@ -69,5 +69,23 @@ namespace Ciphers_Galore.Model
             return true;
         }
 
+        //https://stackoverflow.com/questions/7483706/c-sharp-modinverse-function
+        protected static int ModInverse(int a, int n)
+        {
+            int i = n, v = 0, d = 1;
+            while (a > 0)
+            {
+                int t = i / a, x = a;
+                a = i % x;
+                i = x;
+                x = d;
+                d = v - t * x;
+                v = x;
+            }
+            v %= n;
+            if (v < 0) v = (v + n) % n;
+            return v;
+        }
+
     }
 }

@@ -41,9 +41,8 @@ namespace Ciphers_Galore.Model
 
                 if (showSteps)
                 {
-                    Console.WriteLine("Key of " + key + ": " + answer.ToString());
-                    Console.WriteLine("Cipher: " + new string(Alphabet));
-                    Console.WriteLine("Plain: " + new string(conversion));
+                    Console.WriteLine("Key of " + key + "; inverse is " + ModInverse(key, Alphabet.Length) + ": " + answer.ToString());
+                    Console.WriteLine("Cipher: " + new string(Alphabet) + " => " + new string(conversion));
                     Console.WriteLine();
                 }
 
