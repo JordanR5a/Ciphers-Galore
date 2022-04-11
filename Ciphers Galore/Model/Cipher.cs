@@ -41,7 +41,7 @@ namespace Ciphers_Galore.Model
         }
 
         //https://stackoverflow.com/questions/24094093/how-to-print-2d-array-to-console-in-c-sharp
-        public static void Print2DArray<T>(T[,] matrix)
+        protected static void Print2DArray<T>(T[,] matrix)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
@@ -51,6 +51,22 @@ namespace Ciphers_Galore.Model
                 }
                 Console.WriteLine();
             }
+        }
+
+        //https://stackoverflow.com/questions/15743192/check-if-number-is-prime-number
+        protected static bool IsPrime(int number)
+        {
+            if (number <= 1) return false;
+            if (number == 2) return true;
+            if (number % 2 == 0) return false;
+
+            var boundary = (int)Math.Floor(Math.Sqrt(number));
+
+            for (int i = 3; i <= boundary; i += 2)
+                if (number % i == 0)
+                    return false;
+
+            return true;
         }
 
     }

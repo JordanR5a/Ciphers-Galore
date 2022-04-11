@@ -9,7 +9,7 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            var tool = new Caesar();
+            var tool = new Multiplicative();
             var results = tool.Decrypt(Console.ReadLine(), true);
 
             Console.WriteLine();
@@ -17,8 +17,9 @@ namespace Ciphers_Galore
             //foreach (var result in results) Console.WriteLine(result);
             foreach (var result in FindMostLikely(results, 5)) Console.WriteLine(result);
 
-            /*var tool = new Caesar();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), 4, true));*/
+            /*var tool = new Multiplicative();
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), 7, true));*/
+
 
         }
 

@@ -7,6 +7,19 @@ namespace Ciphers_Galore.Model
 {
     class Caesar : Cipher
     {
+        private char[] GetConversion(int shift)
+        {
+            var answer = new char[Alphabet.Length];
+            for (int let = 0; let < Alphabet.Length; let++)
+            {
+                int index = Alphabet.ToList().IndexOf(Alphabet[let]) - shift;
+                while (index < 0) index += Alphabet.Length;
+
+                answer[let] = Alphabet[index];
+            }
+            return answer;
+        }
+
         public override List<string> Decrypt(string message, bool showSteps)
         {
             message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
@@ -23,7 +36,13 @@ namespace Ciphers_Galore.Model
                     answer.Append(Alphabet[index]);
                 }
 
-                if (showSteps) Console.WriteLine("Shift of " + shift + ": " + answer.ToString());
+                if (showSteps)
+                {
+                    Console.WriteLine("Shift of " + shift + ": " + answer.ToString());
+                    Console.WriteLine("Plain Text: " + new string(Alphabet));
+                    Console.WriteLine("Conversion: " + new string(GetConversion(shift)));
+                    Console.WriteLine();
+                }
                 answers.Add(answer.ToString());
             }
 
