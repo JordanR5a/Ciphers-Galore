@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ciphers_Galore.Model
 {
-    class Caesar : Cipher
+    public class Caesar : Cipher
     {
         private char[] GetConversion(int shift)
         {
@@ -39,8 +39,8 @@ namespace Ciphers_Galore.Model
                 if (showSteps)
                 {
                     Console.WriteLine("Shift of " + shift + ": " + answer.ToString());
-                    Console.WriteLine("Plain Text: " + new string(Alphabet));
-                    Console.WriteLine("Conversion: " + new string(GetConversion(shift)));
+                    Console.WriteLine("Cipher: " + new string(Alphabet));
+                    Console.WriteLine("Plain: " + new string(GetConversion(shift)));
                     Console.WriteLine();
                 }
                 answers.Add(answer.ToString());

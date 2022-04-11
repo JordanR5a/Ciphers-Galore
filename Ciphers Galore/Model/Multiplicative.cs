@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ciphers_Galore.Model
 {
-    class Multiplicative : Cipher
+    public class Multiplicative : Cipher
     {
         public char[] GetConversion(int key)
         {
@@ -42,8 +42,8 @@ namespace Ciphers_Galore.Model
                 if (showSteps)
                 {
                     Console.WriteLine("Key of " + key + ": " + answer.ToString());
-                    Console.WriteLine("Plain Text: " + new string(Alphabet));
-                    Console.WriteLine("Conversion: " + new string(conversion));
+                    Console.WriteLine("Cipher: " + new string(Alphabet));
+                    Console.WriteLine("Plain: " + new string(conversion));
                     Console.WriteLine();
                 }
 
