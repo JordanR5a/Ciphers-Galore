@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ciphers_Galore.Model
@@ -26,17 +27,38 @@ namespace Ciphers_Galore.Model
         //TODO: Instead of only accepting real world answers, find results with the MOST real words in it with the least amount of remaining letters
         private static List<string> IFindPossibleRealWordAnswers(string resultText, string rawText)
         {
-            //Console.WriteLine(resultText);
             List<string> answers = new List<string>();
             if (rawText.Equals(""))
                 answers.Add(resultText);
+            else if (resultText.Trim().Split(" ").Length > 2)
+                answers.Add(resultText + rawText);
 
             int max = Library.LargestWordLength > rawText.Length ? rawText.Length : Library.LargestWordLength;
-            Parallel.For(1, max + 1, i =>
+
+            if (rawText.Length > 25)
             {
-                if (Library.IsRealWord(rawText.Substring(0, i)))
-                    answers.AddRange(IFindPossibleRealWordAnswers(resultText + rawText.Substring(0, i) + " ", rawText.Substring(i)));
-            });
+                //Console.WriteLine("Accelerating search... " + resultText);
+                var paths = new List<string>();
+                for (int i = 1; i < max; i++)
+                    if (Library.IsRealWord(rawText.Substring(0, i)))
+                        paths.Add(rawText.Substring(0, i) + "," + i);
+
+                if (paths.Count != 0)
+                {
+                    var parts = paths.OrderByDescending(p => p.Length).First().Split(",");
+                    answers.AddRange(IFindPossibleRealWordAnswers(resultText + parts[0] + " ", rawText.Substring(int.Parse(parts[1]))));
+                }
+
+            }
+            else
+            {
+                //Console.WriteLine("Glandular search... " + resultText);
+                Parallel.For(1, max + 1, i =>
+                {
+                    if (Library.IsRealWord(rawText.Substring(0, i)))
+                        answers.AddRange(IFindPossibleRealWordAnswers(resultText + rawText.Substring(0, i) + " ", rawText.Substring(i)));
+                });
+            }
             return answers;
         }
 

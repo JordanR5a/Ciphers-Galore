@@ -12,14 +12,18 @@ namespace Ciphers_Galore.Model
         {
             if (x == null || y == null) return 0;
 
-            var xWords = x.Split(" ").OrderByDescending(w => w.Length).ToArray();
-            var yWords = y.Split(" ").OrderByDescending(w => w.Length).ToArray();
+            var xWords = x.Split(" ");
+            var yWords = y.Split(" ");
 
-            int max = xWords.Length > yWords.Length ? yWords.Length : xWords.Length;
+            var xValues = xWords.Take(xWords.Length - 1).OrderByDescending(w => w.Length).ToArray();
+            var yValues = yWords.Take(yWords.Length - 1).OrderByDescending(w => w.Length).ToArray();
+
+
+            int max = xValues.Length > yValues.Length ? yValues.Length : xValues.Length;
             for (int i = 0; i < max; i++)
             {
-                if (xWords[i].Length > yWords[i].Length) return 1;
-                else if (xWords[i].Length < yWords[i].Length) return -1;
+                if (xValues[i].Length > yValues[i].Length) return 1;
+                else if (xValues[i].Length < yValues[i].Length) return -1;
             }
             return 0;
         }

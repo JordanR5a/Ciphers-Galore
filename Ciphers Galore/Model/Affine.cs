@@ -43,7 +43,7 @@ namespace Ciphers_Galore.Model
 
                     if (showSteps)
                     {
-                        Console.WriteLine("Multiplicative key of " + multiplicativeKey + "; inverse is " + ModInverse(multiplicativeKey, Alphabet.Length) + "; additive with " + additiveKey + ": " + answer.ToString());
+                        Console.WriteLine("Multiplicative key of " + multiplicativeKey + "; inverse is " + ModInverse(multiplicativeKey, Alphabet.Length) + "; with additive " + additiveKey + ": " + answer.ToString());
                         Console.WriteLine("Cipher: " + new string(Alphabet) + " => " + new string(conversion));
                         Console.WriteLine();
                     }
