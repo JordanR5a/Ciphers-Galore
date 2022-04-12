@@ -24,7 +24,6 @@ namespace Ciphers_Galore.Model
             return IFindPossibleRealWordAnswers("", rawText);
         }
 
-        //TODO: Instead of only accepting real world answers, find results with the MOST real words in it with the least amount of remaining letters
         private static List<string> IFindPossibleRealWordAnswers(string resultText, string rawText)
         {
             List<string> answers = new List<string>();
