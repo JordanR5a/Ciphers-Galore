@@ -29,14 +29,14 @@ namespace Ciphers_Galore.Model
             List<string> answers = new List<string>();
             if (rawText.Equals(""))
                 answers.Add(resultText);
-            else if (resultText.Trim().Split(" ").Length > 2)
+            else if (resultText.Trim().Split(" ").Length > 3)
                 answers.Add(resultText + rawText);
 
             int max = Library.LargestWordLength > rawText.Length ? rawText.Length : Library.LargestWordLength;
 
             if (rawText.Length > 25)
             {
-                //Console.WriteLine("Accelerating search... " + resultText);
+                //Console.WriteLine("General search... " + resultText);
                 var paths = new List<string>();
                 for (int i = 1; i < max; i++)
                     if (Library.IsRealWord(rawText.Substring(0, i)))
@@ -51,7 +51,7 @@ namespace Ciphers_Galore.Model
             }
             else
             {
-                //Console.WriteLine("Glandular search... " + resultText);
+                //Console.WriteLine("Atomic search... " + resultText);
                 Parallel.For(1, max + 1, i =>
                 {
                     if (Library.IsRealWord(rawText.Substring(0, i)))
@@ -72,22 +72,6 @@ namespace Ciphers_Galore.Model
                 }
                 Console.WriteLine();
             }
-        }
-
-        //https://stackoverflow.com/questions/15743192/check-if-number-is-prime-number
-        protected static bool IsPrime(int number)
-        {
-            if (number <= 1) return false;
-            if (number == 2) return true;
-            if (number % 2 == 0) return false;
-
-            var boundary = (int)Math.Floor(Math.Sqrt(number));
-
-            for (int i = 3; i <= boundary; i += 2)
-                if (number % i == 0)
-                    return false;
-
-            return true;
         }
 
         //https://stackoverflow.com/questions/7483706/c-sharp-modinverse-function

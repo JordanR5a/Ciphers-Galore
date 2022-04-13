@@ -69,6 +69,28 @@ namespace Ciphers_Galore.Model
                 answer.Append(Alphabet[index]);
             }
 
+            if (showSteps) Console.WriteLine("Affine Key: " + ((multiplicativeKey * Alphabet.Length) + additiveKey));
+            return answer.ToString();
+        }
+
+        public string Encrypt(string message, int affineKey, bool showSteps)
+        {
+            message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
+            int multiplicativeKey = (int)(affineKey / Alphabet.Length);
+            int additiveKey = affineKey % Alphabet.Length;
+
+            var answer = new StringBuilder();
+            foreach (var let in message)
+            {
+                int index = ((Alphabet.ToList().IndexOf(let) * multiplicativeKey) + additiveKey) % Alphabet.Length;
+                answer.Append(Alphabet[index]);
+            }
+
+            if (showSteps)
+            {
+                Console.WriteLine("Mltiplicative Key: " + multiplicativeKey);
+                Console.WriteLine("Additive Key: " + additiveKey);
+            }
             return answer.ToString();
         }
     }

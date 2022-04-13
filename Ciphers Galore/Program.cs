@@ -16,9 +16,9 @@ namespace Ciphers_Galore
             Console.WriteLine("Possible Answers:");
             //foreach (var result in results) Console.WriteLine(result);
             foreach (var result in FindMostLikely(results, 25)) Console.WriteLine(result);
-
-            /*var tool = new Affine();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), 15, 19, true));*/
+            /*
+                        var tool = new Affine();
+                        Console.WriteLine(tool.Encrypt(Console.ReadLine(), 141, true));*/
 
 
         }
