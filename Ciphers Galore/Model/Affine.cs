@@ -26,7 +26,7 @@ namespace Ciphers_Galore.Model
             message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
 
             var answers = new List<string>();
-            for (int multiplicativeKey = 0; multiplicativeKey < Alphabet.Length; multiplicativeKey++)
+            for (int multiplicativeKey = 1; multiplicativeKey < Alphabet.Length; multiplicativeKey++)
             {
                 for (int additiveKey = 0; additiveKey < Alphabet.Length; additiveKey++)
                 {
@@ -44,7 +44,7 @@ namespace Ciphers_Galore.Model
                     if (showSteps)
                     {
                         Console.WriteLine("Multiplicative key of " + multiplicativeKey + "; with additive " + additiveKey + "; Affine key is " + ((multiplicativeKey * Alphabet.Length) + additiveKey) + ": " + answer.ToString());
-                        Console.WriteLine("Cipher: " + new string(Alphabet) + " => " + new string(conversion));
+                        Console.WriteLine("Cipher: " + new string(conversion) + " => " + new string(Alphabet));
                         Console.WriteLine();
                     }
 

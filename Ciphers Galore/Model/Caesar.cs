@@ -39,7 +39,7 @@ namespace Ciphers_Galore.Model
                 if (showSteps)
                 {
                     Console.WriteLine("Shift of " + shift + ": " + answer.ToString());
-                    Console.WriteLine("Cipher: " + new string(Alphabet) + " => " + new string(GetConversion(shift)));
+                    Console.WriteLine("Cipher: " + new string(GetConversion(shift)) + " => " + new string(Alphabet));
                     Console.WriteLine();
                 }
                 answers.Add(answer.ToString());
