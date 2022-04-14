@@ -91,7 +91,7 @@ namespace Ciphers_Galore.Model
                 Console.WriteLine("Mltiplicative Key: " + multiplicativeKey);
                 Console.WriteLine("Additive Key: " + additiveKey);
             }
-            return answer.ToString();
+            return answer.ToString().ToUpper();
         }
     }
 }
