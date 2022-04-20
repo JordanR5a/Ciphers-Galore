@@ -20,6 +20,38 @@ namespace Ciphers_Galore.Model
             return answer;
         }
 
+        private char[] GetConversion(string keyword)
+        {
+            var conversion = new List<char>(keyword.ToCharArray().Distinct());
+            foreach (var let in Alphabet)
+                if (!conversion.Contains(let)) conversion.Add(let);
+            return conversion.ToArray();
+        }
+
+        public List<string> Decrypt(string message, string keyword, bool showSteps)
+        {
+            message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
+            keyword = new string(keyword.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
+
+            var conversion = GetConversion(keyword);
+
+            var answer = new StringBuilder();
+            foreach (var let in message)
+            {
+                var tmp = conversion.ToList().IndexOf(let);
+                answer.Append(Alphabet[conversion.ToList().IndexOf(let)]);
+            }
+
+            if (showSteps)
+            {
+                Console.WriteLine("Plaintext: " + answer.ToString());
+                Console.WriteLine("Cipher: " + new string(conversion) + " => " + new string(Alphabet));
+                Console.WriteLine();
+            }
+
+            return FindPossibleRealWordAnswers(answer.ToString());
+        }
+
         public override List<string> Decrypt(string message, bool showSteps)
         {
             message = new string(message.Where(c => Char.IsLetter(c)).ToArray()).ToLower();
@@ -38,7 +70,7 @@ namespace Ciphers_Galore.Model
 
                 if (showSteps)
                 {
-                    Console.WriteLine("Shift of " + shift + ": " + answer.ToString());
+                    Console.WriteLine("Shift of " + Math.Abs(shift - Alphabet.Length) + ": " + answer.ToString());
                     Console.WriteLine("Cipher: " + new string(GetConversion(shift)) + " => " + new string(Alphabet));
                     Console.WriteLine();
                 }

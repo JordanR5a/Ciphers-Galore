@@ -9,16 +9,16 @@ namespace Ciphers_Galore
     {
         static void Main(string[] args)
         {
-            /*var tool = new Affine();
-            var results = tool.Decrypt(Console.ReadLine(), true);
+            var tool = new Caesar();
+            var results = tool.Decrypt(Console.ReadLine(), "If you are wanting to know the best TV show of all time, stay tuned", true);
 
             Console.WriteLine();
             Console.WriteLine("Possible Answers:");
             //foreach (var result in results) Console.WriteLine(result);
-            foreach (var result in FindMostLikely(results, 25)) Console.WriteLine(result);*/
+            foreach (var result in FindMostLikely(results, 25)) Console.WriteLine(result);
 
-            var tool = new Affine();
-            Console.WriteLine(tool.Encrypt(Console.ReadLine(), 666, true));
+            /*var tool = new Vigenere();
+            Console.WriteLine(tool.Encrypt(Console.ReadLine(), "NERDY", true));*/
 
 
         }
