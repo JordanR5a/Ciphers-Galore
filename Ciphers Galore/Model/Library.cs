@@ -48,6 +48,14 @@ namespace Ciphers_Galore.Model
             else return false;
         }
 
+        public bool ContainsRealWord(string str)
+        {
+            foreach (var word in words)
+                if (str.Contains(word))
+                    return true;
+            return false;
+        }
+
         public string GetRealWord(int length)
         {
             return GetRealWord(length, new Dictionary<char, int>());

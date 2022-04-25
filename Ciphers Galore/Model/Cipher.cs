@@ -19,6 +19,11 @@ namespace Ciphers_Galore.Model
 
         public virtual string Encrypt(string message, bool showSteps) { return null; }
 
+        protected static List<string> FindPossibleAnswers(List<string> results)
+        {
+            return results.Where(r => Library.ContainsRealWord(r)).ToList();
+        }
+
         protected static List<string> FindPossibleRealWordAnswers(string rawText)
         {
             return IFindPossibleRealWordAnswers("", rawText);
@@ -34,7 +39,7 @@ namespace Ciphers_Galore.Model
 
             int max = Library.LargestWordLength > rawText.Length ? rawText.Length : Library.LargestWordLength;
 
-            if (rawText.Length > 25)
+            if (rawText.Length < 15)
             {
                 //Console.WriteLine("General search... " + resultText);
                 var paths = new List<string>();

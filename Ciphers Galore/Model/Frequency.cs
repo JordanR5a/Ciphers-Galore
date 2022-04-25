@@ -17,7 +17,6 @@ namespace Ciphers_Galore.Model
             foreach (char c in message)
                 if (cipherFrequency.ContainsKey(c)) cipherFrequency[c] += 1;
                 else cipherFrequency.Add(c, 1);
-            cipherFrequency = cipherFrequency.OrderByDescending(c => c.Value) as Dictionary<char, int>;
 
             if (showSteps)
             {
@@ -26,6 +25,17 @@ namespace Ciphers_Galore.Model
                 Console.WriteLine();
             }
 
+        }
+
+        public string Replace(string message, char character, char replacement)
+        {
+            var result = new StringBuilder();
+
+            foreach (var c in message)
+                if (c.Equals(character)) result.Append(replacement);
+                else result.Append(c);
+
+            return result.ToString();
         }
 
     }

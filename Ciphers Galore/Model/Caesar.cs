@@ -44,7 +44,7 @@ namespace Ciphers_Galore.Model
 
             if (showSteps)
             {
-                Console.WriteLine("Plaintext: " + answer.ToString());
+                Console.WriteLine("Answer: " + answer.ToString());
                 Console.WriteLine("Cipher: " + new string(conversion) + " => " + new string(Alphabet));
                 Console.WriteLine();
             }
@@ -71,7 +71,7 @@ namespace Ciphers_Galore.Model
                 if (showSteps)
                 {
                     Console.WriteLine("Shift of " + Math.Abs(shift - Alphabet.Length) + ": " + answer.ToString());
-                    Console.WriteLine("Cipher: " + new string(GetConversion(shift)) + " => " + new string(Alphabet));
+                    Console.WriteLine("Cipher: " + new string(Alphabet) + " => " + new string(GetConversion(shift)));
                     Console.WriteLine();
                 }
                 answers.Add(answer.ToString());
